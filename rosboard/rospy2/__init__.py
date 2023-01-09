@@ -222,7 +222,7 @@ class Subscriber(object):
         self.type = _ros2_type_to_type_name(topic_type)
         self.callback = callback
         self.callback_args = callback_args
-        self._sub = _node.create_subscription(topic_type, topic_name, self._ros2_callback, rclpy.qos.QoSPresetProfiles.SENSOR_DATA.value, event_callbacks = rclpy.qos_event.SubscriptionEventCallbacks())
+        self._sub = _node.create_subscription(topic_type, topic_name, self._ros2_callback, rclpy.qos.QoSProfile(history=rclpy.qos.QoSHistoryPolicy.KEEP_ALL), event_callbacks = rclpy.qos_event.SubscriptionEventCallbacks())
         _node.guards
         self.get_num_connections = lambda: 1 # No good ROS2 equivalent
 
